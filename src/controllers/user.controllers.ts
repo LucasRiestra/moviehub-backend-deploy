@@ -6,12 +6,11 @@ export const getAllUsers = (req: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  const { name, email, password, movies } = req.body
+  const { name, email, password, movie } = req.body
 
   try {
-    if (!name || !email || !password) throw new Error('Missing fields');
 
-    const newUser = await UserModel.create({ name, email, password, movies });
+    const newUser = await UserModel.create({ name, email, password, movie });
 
     res.status(201).json(newUser);
   } catch (error) {
@@ -24,7 +23,8 @@ export const getUserById = async (req: Request, rest: Response) => {
   const { userId } = req.params
 
   try {
-    const user = await UserModel.findById({ _id: userId });
+    const user = await (await UserModel.findById({ _id: userId }).populate('movie')).populate({path:'movie.genre'})
+
     rest.status(200).json(user);
   } catch (error) {
     rest.status(500).json(error)
