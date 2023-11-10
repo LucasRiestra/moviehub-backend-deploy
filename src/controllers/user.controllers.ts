@@ -1,16 +1,25 @@
 import { Request, Response } from 'express';
 import UserModel from '../model/user.model';
+import prisma from '../db/client';
 
-export const getAllUsers = (req: Request, res: Response) => {
-  res.status(200).send('Get all users');
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const allUsers = await prisma.user.findMany()
+    res.status(201).json(allUsers)
+  }catch (error){
+    res.status(500).send(error);
+  }
 };
 
 export const createUser = async (req: Request, res: Response) => {
   const { name, email, password, movie } = req.body
 
   try {
+    if (!name || !email || !password ||movie) throw new Error('Missing fields')
 
-    const newUser = await UserModel.create({ name, email, password, movie });
+    const newUser = await prisma.user.create({
+      data: { name, email, password, movie }
+    });
 
     res.status(201).json(newUser);
   } catch (error) {
