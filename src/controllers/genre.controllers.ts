@@ -14,7 +14,6 @@ export const createGenre = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json(error);
   };
-  //res.status(200).send('Movie created')
 };
 
 export const getAllGenre = async (req: Request, res: Response) => {
@@ -26,14 +25,11 @@ export const getAllGenre = async (req: Request, res: Response) => {
   }
 };
 
-// genre.controller.ts
-
 export const addGenreToMovieById = async (req: Request, res: Response) => {
   const { movieId } = req.params;
   const { genreId } = req.body;
 
   try {
-    // Buscar la película por ID
     const movie = await prisma.movie.findUnique({
       where: { id: movieId },
     });
@@ -42,7 +38,6 @@ export const addGenreToMovieById = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Movie not found' });
     }
 
-    // Asociar el género a la película
     const updatedMovie = await prisma.movie.update({
       where: { id: movieId },
       data: {
