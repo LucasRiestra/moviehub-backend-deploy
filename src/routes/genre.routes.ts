@@ -1,11 +1,15 @@
 import { Request, Response, Router } from 'express';
 import {
-  createGenres,
+  createGenre,
+  getAllGenre,
+  addGenreToMovieById
 } from '../controllers/genre.controllers';
 
 
 const genreRoutes = Router();
 
-genreRoutes.post('/:movieId', createGenres);
+genreRoutes.get('/', getAllGenre)
+genreRoutes.post('/', createGenre);
+genreRoutes.post('/:movieId', addGenreToMovieById);
 
 export default genreRoutes;

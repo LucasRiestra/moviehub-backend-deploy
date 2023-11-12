@@ -32,7 +32,12 @@ export const getUserById = async (req: Request, rest: Response) => {
   const { userId } = req.params
 
   try {
-    const user = await (await UserModel.findById({ _id: userId }).populate('movie')).populate({path:'movie.genre'})
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include:{
+        movie: true
+      }
+     })
 
     rest.status(200).json(user);
   } catch (error) {
@@ -41,26 +46,32 @@ export const getUserById = async (req: Request, rest: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-  const {userId} = req.params;
-  const {name, email} = req.body;
+  const { userId } = req.params;
+  const { name, email } = req.body;
 
   try {
-    const user = await UserModel.findByIdAndUpdate(
-        { _id: userId },
-       { 
-        $set: { name: name, email: email } 
-      },
-      { new: true } 
-       );
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: { name, email },
+    });
 
-       res.status(201).json(user);
-
+    res.status(201).json(updatedUser);
   } catch (error) {
-      res.status(500).json(error);
+    res.status(500).json(error);
   }
-  //res.status(200).send('User updated');
 };
 
-export const deleteUser = (req: Request, res: Response) => {
-  res.status(202).send('User deleted');
+
+export const deleteUser = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    await prisma.user.delete({
+      where: { id: userId }
+    })
+    res.status(204).json();
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
 };
