@@ -51,3 +51,32 @@ export const getAllMovies = async (req: Request, res: Response) => {
   }
 };
 
+export const updateMovie = async (req: Request, res: Response) => {
+  const { movieId } = req.params;
+  const { name, poster_image, score } = req.body;
+
+  try {
+    const updatedMovie = await prisma.movie.update({
+      where: { id: movieId },
+      data: { name, poster_image, score },
+    });
+
+    res.status(201).json(updatedMovie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const deleteMovie = async (req: Request, res: Response) => {
+  const { movieId } = req.params;
+
+  try {
+    const deletedMovie = await prisma.movie.delete({
+      where: { id: movieId },
+    });
+
+    res.status(200).json(deletedMovie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

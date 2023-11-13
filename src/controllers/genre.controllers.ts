@@ -52,3 +52,18 @@ export const addGenreToMovieById = async (req: Request, res: Response) => {
     res.status(500).json(error);
   }
 };
+
+
+export const deleteGenre = async (req: Request, res: Response) => {
+  const { genreId } = req.params;
+
+  try {
+    const deletedGenre = await prisma.genre.delete({
+      where: { id: genreId },
+    });
+
+    res.status(200).json(deletedGenre);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
