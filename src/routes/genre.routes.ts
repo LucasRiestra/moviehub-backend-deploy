@@ -12,6 +12,7 @@ const genreRoutes = Router();
 genreRoutes.get('/', getAllGenre)
 genreRoutes.post('/', createGenre);
 genreRoutes.post('/:movieId', addGenreToMovieById);
+genreRoutes.patch('/:movieId', addGenreToMovieById);
 genreRoutes.delete('/:genreId', deleteGenre);
 
 

@@ -7,7 +7,7 @@ export const createGenre = async (req: Request, res: Response) => {
   const { name } = req.body
 
   try {
-    const genre = await prisma.genre.create({ 
+    const genre = await prisma.genres.create({ 
       data: {name}});
 
     res.status(201).json(genre);
@@ -18,10 +18,24 @@ export const createGenre = async (req: Request, res: Response) => {
 
 export const getAllGenre = async (req: Request, res: Response) => {
   try {
-    const allGenres = await prisma.genre.findMany()
+    const allGenres = await prisma.genres.findMany()
     res.status(201).json(allGenres)
   }catch (error){
     res.status(500).send(error);
+  }
+};
+
+export const deleteGenre = async (req: Request, res: Response) => {
+  const { genreId } = req.params;
+
+  try {
+    const deletedGenre = await prisma.genres.delete({
+      where: { id: genreId },
+    });
+
+    res.status(200).json(deletedGenre);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
 
@@ -30,39 +44,21 @@ export const addGenreToMovieById = async (req: Request, res: Response) => {
   const { genreId } = req.body;
 
   try {
-    const movie = await prisma.movie.findUnique({
-      where: { id: movieId },
-    });
-
-    if (!movie) {
-      return res.status(404).json({ error: 'Movie not found' });
-    }
-
-    const updatedMovie = await prisma.movie.update({
+    const updatedMovie = await prisma.movies.update({
       where: { id: movieId },
       data: {
-        genre: {
+        genres: {
           connect: { id: genreId },
         },
       },
     });
 
-    res.status(200).json(updatedMovie);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-};
-
-
-export const deleteGenre = async (req: Request, res: Response) => {
-  const { genreId } = req.params;
-
-  try {
-    const deletedGenre = await prisma.genre.delete({
-      where: { id: genreId },
+    const finalMovie = await prisma.movies.findUnique({
+      where: { id: movieId },
+      include: { genres: true },
     });
 
-    res.status(200).json(deletedGenre);
+    res.status(200).json(finalMovie);
   } catch (error) {
     res.status(500).json(error);
   }

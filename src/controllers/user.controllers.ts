@@ -12,20 +12,21 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  const { name, email, password, movie } = req.body
+  const { name, email, password,  } = req.body;
 
   try {
-    if (!name || !email || !password ||movie) throw new Error('Missing fields')
-
-    const newUser = await prisma.user.create({
-      data: { name, email, password, movie }
+    const user = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password,
+      },
     });
 
-    res.status(201).json(newUser);
+    res.status(201).json(user);
   } catch (error) {
     res.status(500).json(error);
-  };
-  //res.status(200).send('User created')
+  }
 };
 
 export const getUserById = async (req: Request, rest: Response) => {
@@ -35,7 +36,7 @@ export const getUserById = async (req: Request, rest: Response) => {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include:{
-        movie: true
+        movies: true
       }
      })
 
