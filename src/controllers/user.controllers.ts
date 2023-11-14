@@ -1,9 +1,21 @@
 import { Request, Response } from 'express';
-import UserModel from '../model/user.model';
 import prisma from '../db/client';
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const createUser = async (req: Request, res: Response) => {
+  const { name, email, password } = req.body;
 
+  try {    
+      const newUser = await prisma.user.create({
+          data: { name, email, password }
+      });
+  
+      res.status(201).json(newUser);
+  } catch (error) {
+      res.status(500).json(error);
+  }
+};
+
+export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const allUsers = await prisma.user.findMany({
             include: {
@@ -19,20 +31,6 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(201).json(allUsers);
     } catch (error) {
         res.status(200).send('Cannot find all users');
-    }
-};
-
-export const createUser = async (req: Request, res: Response) => {
-    const { name, email, password } = req.body;
-
-    try {    
-        const newUser = await prisma.user.create({
-            data: { name, email, password }
-        });
-    
-        res.status(201).json(newUser);
-    } catch (error) {
-        res.status(500).json(error);
     }
 };
 

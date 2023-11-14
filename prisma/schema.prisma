@@ -15,6 +15,14 @@ model User {
   movies     Movies[]
 }
 
+model GenresOnMovies {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  movieId    String?  @db.ObjectId
+  genreId    String?  @db.ObjectId
+  movie      Movies?  @relation(fields: [movieId], references: [id])
+  genre      Genres?  @relation(fields: [genreId], references: [id])
+}
+
 model Movies {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String   
@@ -31,10 +39,3 @@ model Genres {
   movies     GenresOnMovies[]
 }
 
-model GenresOnMovies {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  movieId    String?  @db.ObjectId
-  genreId    String?  @db.ObjectId
-  movie      Movies?  @relation(fields: [movieId], references: [id])
-  genre      Genres?  @relation(fields: [genreId], references: [id])
-}
