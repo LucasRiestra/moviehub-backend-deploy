@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import prisma from '../db/client';
+import { DATA_SOURCE, prismaClient } from '../db/client';
 
 export const getAllMovies = async (req: Request, res: Response) => {
     try {
-        const allMovies = await prisma.movies.findMany({
+        const allMovies = await prismaClient.movies.findMany({
             include: {
                 genres: {
                     select: { genre: { select: { name: true, id: true } } } 
@@ -21,7 +22,7 @@ export const createMovie = async (req: Request, res: Response) => {
     const { userId } = req.params;
 
     try {
-        const movie = await prisma.movies.create({data:{
+        const movie = await prismaClient.movies.create({data:{
             name,
             poster_image,
             score,
@@ -53,7 +54,7 @@ export const getMovieById = async (req: Request, res: Response) => {
     const { movieId } = req.params;
 
     try {
-        const movie = await prisma.movies.findUnique({
+        const movie = await prismaClient.movies.findUnique({
             where: { id: movieId },
             include: {
                 genres: {
@@ -72,7 +73,7 @@ export const updateMovie = async (req: Request, res: Response) => {
     const { name, poster_image, score, genres } = req.body;
 
     try {
-        const existingMovie = await prisma.movies.findUnique({
+        const existingMovie = await prismaClient.movies.findUnique({
             where: { id: movieId },
             include: { genres: { select: { genre: { select: { name: true } } } } },
         });
@@ -119,7 +120,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
     const { movieId } = req.params;
 
     try {
-        const deletedMovie = await prisma.movies.delete({
+        const deletedMovie = await prismaClient.movies.delete({
             where: { id: movieId }
         });
 

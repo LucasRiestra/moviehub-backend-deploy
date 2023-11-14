@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import prisma from '../db/client';
+import { DATA_SOURCE, prismaClient } from '../db/client';
+import { convertToType } from '../helpers/utils';
 
 export const createUser = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
 
   try {    
-      const newUser = await prisma.user.create({
+      const newUser = await prismaClient.user.create({
           data: { name, email, password }
       });
   
@@ -17,7 +19,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const allUsers = await prisma.user.findMany({
+        const allUsers = await prismaClient.user.findMany({
             include: {
                 movies: {
                     include: {
@@ -38,7 +40,7 @@ export const getUserById = async (req: Request, res: Response) => {
     const { userId } = req.params;
 
     try {
-        const user = await prisma.user.findUnique({
+        const user = await prismaClient.user.findUnique({
             where: { id: userId }, 
             include: {
                 movies: {
@@ -62,8 +64,8 @@ export const updateUser = async (req: Request, res: Response) => {
     const { name, email } = req.body;
     
     try {
-        const updatedUser = await prisma.user.update({
-            where: { id: userId },
+        const updatedUser = await prismaClient.user.update({
+            where: { id: convertToType(userId) },
             data: { name, email }
         });
             
@@ -77,7 +79,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     const { userId } = req.params;
 
     try {
-        const deletedUser = await prisma.user.delete({
+        const deletedUser = await prismaClient.user.delete({
             where: { id: userId }
         });
         res.status(204).json(deletedUser);
