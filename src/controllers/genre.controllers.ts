@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../db/client';
 import { DATA_SOURCE, prismaClient } from '../db/client';
+import { convertToType } from '../helpers/utils';
 
 export const createGenre = async (req: Request, res: Response) => {
   const { name } = req.body;
@@ -19,7 +20,7 @@ export const deleteGenre = async (req: Request, res: Response) => {
 
   try {
       const deletedGenre = await prismaClient.genres.delete({
-          where: { id: genreId }
+        where: { id: convertToType(genreId) }
       });
 
       res.status(200).json(deletedGenre);

@@ -3,22 +3,24 @@ import cors from 'cors';
 import userRoutes from "./routes/user.routes";
 import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
+import {requestRouter} from './routes/request.routes';
+import { checkJwtMiddleware } from './middlewares/checkjwt.middleware';
 
-// Inicializaciones
 const app = express();
 
-// Configuración de CORS
+// Cors configuration
 const corsOptions = {
-  origin: 'http://localhost:5173', // Ajusta esto al puerto correcto de tu aplicación React
+  origin: 'http://localhost:5173',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
 app.use(express.json());
 
-// Rutas
+// Routes
 app.use("/user", userRoutes);
 app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
+
 
 export default app;

@@ -41,7 +41,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
     try {
         const user = await prismaClient.user.findUnique({
-            where: { id: userId }, 
+            where: { id: convertToType(userId) }, 
             include: {
                 movies: {
                     include: {
@@ -80,7 +80,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     try {
         const deletedUser = await prismaClient.user.delete({
-            where: { id: userId }
+            where: { id: convertToType(userId) }
         });
         res.status(204).json(deletedUser);
     } catch (error) {
