@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import prisma from '../db/client';
 import { DATA_SOURCE, prismaClient } from '../db/client';
 import { convertToType } from '../helpers/utils';
+import { User } from '@prisma/client'; 
 
 export const createUser = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -87,3 +88,27 @@ export const deleteUser = async (req: Request, res: Response) => {
         res.status(500).json(error);
     }
 };
+
+
+export const getUserMovies = async (req: Request, res: Response) => {
+    try {
+      const userId = req['user']?.sub;
+      if (!userId) {
+        return res.status(401).json({ error: 'No se proporcionó un ID de usuario válido' });
+      }
+  
+      const user = await prismaClient.user.findUnique({
+        where: { id: userId }, // Esto asume que el campo ID de tu usuario es de tipo UUID
+        include: { movies: { include: { genres: true } } },
+      });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
+  
+      return res.json(user);
+    } catch (error) {
+      console.error('Error al obtener el usuario y sus películas:', error);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  };

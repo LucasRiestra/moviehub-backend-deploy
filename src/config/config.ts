@@ -19,9 +19,9 @@ type AppConfig = {
 };
 
 type Auth0Config = { 
-  client_origin: string;
-  audience: string;
-  issuer: string;
+  client_origin: string | undefined;
+  audience: string | undefined;
+  issuer: string | undefined;
 };
 
 if (process.env.NODE_ENV === 'production') {

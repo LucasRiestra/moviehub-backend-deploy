@@ -23,4 +23,5 @@ app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
 
 
+
 export default app;

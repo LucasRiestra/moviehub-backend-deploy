@@ -4,7 +4,8 @@ import {
   createUser,
   updateUser,
   deleteUser,
-  getUserById
+  getUserById,
+  getUserMovies
 } from '../controllers/user.controllers';
 
 
@@ -15,5 +16,6 @@ userRoutes.get('/:userId', getUserById)
 userRoutes.post('/', createUser);
 userRoutes.patch('/:userId', updateUser);
 userRoutes.delete('/:userId', deleteUser);
+userRoutes.get('/movies', getUserMovies);
 
 export default userRoutes;
