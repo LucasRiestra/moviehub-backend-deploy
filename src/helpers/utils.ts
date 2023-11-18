@@ -16,3 +16,9 @@ export const convertToType = (id: string) => {
         return id;
     }
 }
+
+export const convertToString = (value: any): string => {
+    return String(value);
+}
+
+

@@ -90,25 +90,25 @@ export const deleteUser = async (req: Request, res: Response) => {
 };
 
 
-export const getUserMovies = async (req: Request, res: Response) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
+    const { userEmail } = req.params;
+
     try {
-      const userId = req['user']?.sub;
-      if (!userId) {
-        return res.status(401).json({ error: 'No se proporcionó un ID de usuario válido' });
-      }
-  
-      const user = await prismaClient.user.findUnique({
-        where: { id: userId }, // Esto asume que el campo ID de tu usuario es de tipo UUID
-        include: { movies: { include: { genres: true } } },
-      });
-  
-      if (!user) {
-        return res.status(404).json({ error: 'Usuario no encontrado' });
-      }
-  
-      return res.json(user);
+        const user = await prismaClient.user.findUnique({
+            where: { email: userEmail },
+            include: {
+                movies: {
+                    include: {
+                        genres: {
+                            select: { genre: { select: { name: true, id: true } } },
+                        },
+                    },
+                },
+            },
+        });
+        res.status(200).json(user);
     } catch (error) {
-      console.error('Error al obtener el usuario y sus películas:', error);
-      return res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(500).json(error);
+        console.log(error);
     }
-  };
+};

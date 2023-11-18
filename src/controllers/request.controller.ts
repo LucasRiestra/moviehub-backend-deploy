@@ -27,3 +27,4 @@ export const publicRequest = async (req: Request, res: Response, next: NextFunct
 export const protectedRequest = async (req: Request, res: Response) => {
   res.status(200).send({ message: "Protected Request" });
 };
+

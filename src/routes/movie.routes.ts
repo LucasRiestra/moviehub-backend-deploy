@@ -4,7 +4,8 @@ import {
   getAllMovies,
   getMovieById,
   updateMovie,
-  deleteMovie
+  deleteMovie,
+  getMoviesByUserId
 } from '../controllers/movie.controllers';
 
 const movieRouter = Router();
@@ -15,5 +16,6 @@ movieRouter.get('/', getAllMovies);
 movieRouter.get('/:movieId', getMovieById);
 movieRouter.patch('/:movieId', updateMovie);
 movieRouter.delete('/:movieId', deleteMovie);
+movieRouter.get('/user/:userId', getMoviesByUserId);
 
 export default movieRouter;
