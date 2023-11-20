@@ -8,7 +8,7 @@ export const uploadImage = async (imagePath: string) => {
         resource_type: "image",
         folder: 'backend',
         height: 650,
-        width: 300,
+        width: 400,
         crop: 'scale',
         overwrite: true
     })
