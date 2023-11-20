@@ -5,6 +5,9 @@ import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
 import {requestRouter} from './routes/request.routes';
 import { checkJwtMiddleware } from './middlewares/checkjwt.middleware';
+import FileUpload from 'express-fileupload';
+;
+
 
 const app = express();
 
@@ -14,13 +17,18 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
+app.use(FileUpload({
+  useTempFiles: true,
+  tempFileDir: './uploads',
+  limits: {fileSize: 10000000},
+  abortOnLimit: true
+}));
 // Routes
 app.use("/user", userRoutes);
 app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
+app.use("/", requestRouter);
 
 
 
