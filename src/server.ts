@@ -30,6 +30,4 @@ app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
 app.use("/", requestRouter);
 
-
-
 export default app;
