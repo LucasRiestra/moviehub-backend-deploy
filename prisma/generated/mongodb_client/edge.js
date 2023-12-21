@@ -21,6 +21,7 @@ const {
   warnOnce,
   defineDmmfProperty,
   Public,
+  detectRuntime,
 } = require('./runtime/edge')
 
 
@@ -30,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.5.2
- * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
+ * Prisma Client JS version: 5.7.1
+ * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
  */
 Prisma.prismaVersion = {
-  client: "5.5.2",
-  engine: "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
+  client: "5.7.1",
+  engine: "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -133,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\lucas\\Desktop\\Movie-hub\\backend-express-typescript\\prisma\\generated\\mongodb_client",
+      "value": "C:\\Users\\lucas\\Desktop\\Assembler\\Movie-hub\\backend-express-typescript\\prisma\\generated\\mongodb_client",
       "fromEnvVar": null
     },
     "config": {
@@ -144,6 +145,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-1.0.x"
       }
     ],
     "previewFeatures": [],
@@ -154,8 +159,8 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.5.2",
-  "engineVersion": "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a",
+  "clientVersion": "5.7.1",
+  "engineVersion": "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5",
   "datasourceNames": [
     "db"
   ],
@@ -169,15 +174,15 @@ const config = {
       }
     }
   },
-  "inlineSchema": "Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyIKICAgb3V0cHV0ID0gIi4vZ2VuZXJhdGVkL21vbmdvZGJfY2xpZW50Igp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJtb25nb2RiIgogIHVybCAgICAgID0gZW52KCJNT05HT19EQl9VUkkiKQp9Cgptb2RlbCBVc2VyIHsKICBpZCAgICAgICAgIFN0cmluZyAgIEBpZCBAZGVmYXVsdChhdXRvKCkpIEBtYXAoIl9pZCIpIEBkYi5PYmplY3RJZAogIGVtYWlsICAgICAgU3RyaW5nICAgQHVuaXF1ZQogIG5hbWUgICAgICAgU3RyaW5nICAgQHVuaXF1ZQogIHBhc3N3b3JkICAgU3RyaW5nICAgCiAgbW92aWVzICAgICBNb3ZpZXNbXQp9Cgptb2RlbCBHZW5yZXNPbk1vdmllcyB7CiAgaWQgICAgICAgICBTdHJpbmcgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBtb3ZpZUlkICAgIFN0cmluZz8gIEBkYi5PYmplY3RJZAogIGdlbnJlSWQgICAgU3RyaW5nPyAgQGRiLk9iamVjdElkCiAgbW92aWUgICAgICBNb3ZpZXM/ICBAcmVsYXRpb24oZmllbGRzOiBbbW92aWVJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgZ2VucmUgICAgICBHZW5yZXM/ICBAcmVsYXRpb24oZmllbGRzOiBbZ2VucmVJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCn0KCm1vZGVsIE1vdmllcyB7CiAgaWQgICAgICAgICBTdHJpbmcgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBuYW1lICAgICAgIFN0cmluZyAgIAogIHNjb3JlICAgICAgU3RyaW5nICAgCiAgZ2VucmVzICAgICBHZW5yZXNPbk1vdmllc1tdCiAgcG9zdGVyX2ltYWdlIFN0cmluZwogIHVzZXJJZCAgICAgU3RyaW5nPyAgQGRiLk9iamVjdElkCiAgVXNlciAgICAgICBVc2VyPyAgICBAcmVsYXRpb24oZmllbGRzOiBbdXNlcklkXSwgcmVmZXJlbmNlczogW2lkXSwgb25EZWxldGU6IENhc2NhZGUpCn0KCm1vZGVsIEdlbnJlcyB7CiAgaWQgICAgICAgICBTdHJpbmcgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBuYW1lICAgICAgIFN0cmluZyAgIEB1bmlxdWUKICBtb3ZpZXMgICAgIEdlbnJlc09uTW92aWVzW10KfQoK",
-  "inlineSchemaHash": "d8ec40d57be9def8778248b54e00ee40b3251b62755f07fa0108343dc1eab689",
+  "inlineSchema": "Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyIKICAgb3V0cHV0ID0gIi4vZ2VuZXJhdGVkL21vbmdvZGJfY2xpZW50IgogICBiaW5hcnlUYXJnZXRzID0gWyJuYXRpdmUiLCAicmhlbC1vcGVuc3NsLTEuMC54Il0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAibW9uZ29kYiIKICB1cmwgICAgICA9IGVudigiTU9OR09fREJfVVJJIikKfQoKbW9kZWwgVXNlciB7CiAgaWQgICAgICAgICBTdHJpbmcgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBlbWFpbCAgICAgIFN0cmluZyAgIEB1bmlxdWUKICBuYW1lICAgICAgIFN0cmluZyAgIEB1bmlxdWUKICBwYXNzd29yZCAgIFN0cmluZyAgIAogIG1vdmllcyAgICAgTW92aWVzW10KfQoKbW9kZWwgR2VucmVzT25Nb3ZpZXMgewogIGlkICAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KGF1dG8oKSkgQG1hcCgiX2lkIikgQGRiLk9iamVjdElkCiAgbW92aWVJZCAgICBTdHJpbmc/ICBAZGIuT2JqZWN0SWQKICBnZW5yZUlkICAgIFN0cmluZz8gIEBkYi5PYmplY3RJZAogIG1vdmllICAgICAgTW92aWVzPyAgQHJlbGF0aW9uKGZpZWxkczogW21vdmllSWRdLCByZWZlcmVuY2VzOiBbaWRdKQogIGdlbnJlICAgICAgR2VucmVzPyAgQHJlbGF0aW9uKGZpZWxkczogW2dlbnJlSWRdLCByZWZlcmVuY2VzOiBbaWRdKQp9Cgptb2RlbCBNb3ZpZXMgewogIGlkICAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KGF1dG8oKSkgQG1hcCgiX2lkIikgQGRiLk9iamVjdElkCiAgbmFtZSAgICAgICBTdHJpbmcgICAKICBzY29yZSAgICAgIFN0cmluZyAgIAogIGdlbnJlcyAgICAgR2VucmVzT25Nb3ZpZXNbXQogIHBvc3Rlcl9pbWFnZSBTdHJpbmcKICB1c2VySWQgICAgIFN0cmluZz8gIEBkYi5PYmplY3RJZAogIFVzZXIgICAgICAgVXNlcj8gICAgQHJlbGF0aW9uKGZpZWxkczogW3VzZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0sIG9uRGVsZXRlOiBDYXNjYWRlKQp9Cgptb2RlbCBHZW5yZXMgewogIGlkICAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KGF1dG8oKSkgQG1hcCgiX2lkIikgQGRiLk9iamVjdElkCiAgbmFtZSAgICAgICBTdHJpbmcgICBAdW5pcXVlCiAgbW92aWVzICAgICBHZW5yZXNPbk1vdmllc1tdCn0KCg==",
+  "inlineSchemaHash": "38038daf012f702b3f9a7d7454663d78e9e80c6c56983d0dbc15b1d22a77a33d",
   "noEngine": false
 }
 config.dirname = '/'
 
 config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"dbName\":\"_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"default\":{\"name\":\"auto\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"movies\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Movies\",\"relationName\":\"MoviesToUser\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"GenresOnMovies\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"dbName\":\"_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"default\":{\"name\":\"auto\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"movieId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"genreId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"movie\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Movies\",\"relationName\":\"GenresOnMoviesToMovies\",\"relationFromFields\":[\"movieId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"genre\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Genres\",\"relationName\":\"GenresToGenresOnMovies\",\"relationFromFields\":[\"genreId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Movies\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"dbName\":\"_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"default\":{\"name\":\"auto\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"score\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"genres\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"GenresOnMovies\",\"relationName\":\"GenresOnMoviesToMovies\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"poster_image\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"User\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"User\",\"relationName\":\"MoviesToUser\",\"relationFromFields\":[\"userId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Genres\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"dbName\":\"_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"default\":{\"name\":\"auto\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"movies\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"GenresOnMovies\",\"relationName\":\"GenresToGenresOnMovies\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
-
+config.getQueryEngineWasmModule = undefined
 
 config.injectableEdgeEnv = () => ({
   parsed: {
