@@ -11,12 +11,12 @@ import FileUpload from 'express-fileupload';
 
 const app = express();
 
-// Cors configuration
-const corsOptions = {
-  origin: 'http://localhost:5173',
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+ //Cors configuration
+ const corsOptions = {
+   origin: 'http://localhost:5173',
+   optionsSuccessStatus: 200,
+ };
+app.use(cors());
 app.use(express.json());
 app.use(FileUpload({
   useTempFiles: true,
