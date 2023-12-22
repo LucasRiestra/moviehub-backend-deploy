@@ -1,24 +1,24 @@
-import { DATA_SOURCE, mongoClient, postgresClient } from "../db/client";
+import fs from "fs-extra";
+import { Request, Response } from "express";
+import { uploadImage } from "../utils/cloudinary";
 
+export const uploadPosterWithCloudinary = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const poster = req.files?.image;
+    let posterUploaded = null;
 
-export const getClient = () => {
-    if (DATA_SOURCE === 'postgres') {
-        return postgresClient
-    } else {
-        return mongoClient
+    if (poster) {
+      if ("tempFilePath" in poster) {
+        posterUploaded = await uploadImage(poster.tempFilePath);
+        await fs.unlink(poster.tempFilePath);
+      }
     }
-}
-
-export const convertToType = (id: string) => {
-    if (DATA_SOURCE === "postgres") {
-        return Number(id);
-    } else {
-        return id;
-    }
-}
-
-export const convertToString = (value: any): string => {
-    return String(value);
-}
-
-
+    res.send({ message: "Upload Request Success", data: posterUploaded });
+  } catch (error) {
+    console.error("Error uploading poster:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
