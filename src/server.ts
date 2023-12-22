@@ -8,7 +8,6 @@ import FileUpload from 'express-fileupload';
 import { Request, Response } from 'express'
 ;
 
-
 const app = express();
  //Cors configuration
  const corsOptions = {
