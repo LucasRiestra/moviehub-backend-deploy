@@ -10,11 +10,11 @@ import { Request, Response } from 'express'
 
 const app = express();
  //Cors configuration
- const corsOptions = {
-   origin: 'https://moviehub-next-js.vercel.app/',
-   optionsSuccessStatus: 200,
- };
-app.use(cors(corsOptions));
+//  const corsOptions = {
+//    origin: 'https://moviehub-next-js.vercel.app/',
+//    optionsSuccessStatus: 200,
+//  };
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(FileUpload({
   useTempFiles: true,
