@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';
+// import cors from 'cors';
 import userRoutes from "./routes/user.routes";
 import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
