@@ -14,7 +14,7 @@ const app = express();
 //    origin: 'https://moviehub-next-js.vercel.app/',
 //    optionsSuccessStatus: 200,
 //  };
-// app.use(cors(corsOptions));
+// app.use(cors(corsOptions))
 app.use(express.json());
 app.use(FileUpload({
   useTempFiles: true,
