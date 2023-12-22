@@ -22,7 +22,7 @@ app.use(FileUpload({
   limits: {fileSize: 10000000},
   abortOnLimit: true
 }));
-// Routes
+// Routess
 app.use("/user", userRoutes);
 app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
