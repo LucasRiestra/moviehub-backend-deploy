@@ -30,8 +30,9 @@ export const getAllUsers = async (req: Request, res: Response) => {
         });
         res.status(201).json(allUsers);
     } catch (error) {
-        res.status(200).send('Cannot find all users');
-    }
+        console.error(error);
+        res.status(500).json({ message: 'Cannot find all users', error: error.message });
+      }
 };
 
 export const getUserById = async (req: Request, res: Response) => {
