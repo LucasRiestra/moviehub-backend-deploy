@@ -29,7 +29,6 @@ app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
 app.use("/", requestRouter);
 
-
 app.get("/", (req: Request, res: Response): void => {
   res.status(200).json({ message: "This is working bro!" });
 });

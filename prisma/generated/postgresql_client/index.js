@@ -147,7 +147,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\lucas\\Desktop\\Assembler\\Movie-hub\\backend-express-typescript\\prisma\\generated\\postgresql_client",
+      "value": "C:\\Users\\lucas\\Desktop\\Movie-Hub-backend-deploy\\prisma\\generated\\postgresql_client",
       "fromEnvVar": null
     },
     "config": {
