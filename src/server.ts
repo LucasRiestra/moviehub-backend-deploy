@@ -16,7 +16,7 @@ const app = express();
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    optionsSuccessStatus: 200,
  };
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(FileUpload({
   useTempFiles: true,
