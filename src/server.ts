@@ -13,6 +13,7 @@ const app = express();
  //Cors configuration
  const corsOptions = {
    origin: ['http://localhost:5173', 'https://moviehub-next-js.vercel.app'],
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
    optionsSuccessStatus: 200,
  };
 app.use(cors());
