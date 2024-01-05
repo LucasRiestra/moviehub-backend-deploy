@@ -5,9 +5,7 @@ import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
 import {requestRouter} from './routes/request.routes';
 import FileUpload from 'express-fileupload';
-import { Request, Response } from 'express'
-;
-
+import { Request, Response } from 'express';
 
 const app = express();
 // Cors configuration
@@ -29,7 +27,6 @@ app.use("/user", userRoutes);
 app.use("/movie", movieRoutes);
 app.use("/genre", genreRoutes);
 app.use("/", requestRouter);
-
 
 app.get("/", (req: Request, res: Response): void => {
   res.status(200).json({ message: "This is working bro!" });
