@@ -18,5 +18,4 @@ userRoutes.patch('/:userId', updateUser);
 userRoutes.delete('/:userId', deleteUser);
 userRoutes.get('/email/:userEmail', getUserByEmail)
 
-
 export default userRoutes;
