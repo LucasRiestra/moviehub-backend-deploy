@@ -1,4 +1,4 @@
-import { DATA_SOURCE, mongoClient, postgresClient } from "../db/client";
+import { DATA_SOURCE, default as mongoClient, default as postgresClient } from "../db/client";
 
 
 export const getClient = () => {
