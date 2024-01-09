@@ -10,7 +10,10 @@ import { Request, Response } from 'express';
 const app = express();
 // Cors configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://moviehub-next-js.vercel.app', 'https://developvite-one.vercel.app', 'https://productionnextjs.vercel.app'],
+  origin: ['http://localhost:3000',
+   'https://moviehub-next-js.vercel.app',
+    'https://developvite-one.vercel.app',
+     'https://productionnextjs.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   optionsSuccessStatus: 200,
 };
